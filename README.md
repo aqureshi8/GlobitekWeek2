@@ -6,9 +6,9 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-1\. [ ]  Required: Import the Starting Database
+1\. [x]  Required: Import the Starting Database
 
-2\. [ ]  Required: Set Up the Starting Code
+2\. [x]  Required: Set Up the Starting Code
 
 3\. [ ]  Required: Review code for Staff CMS for Users
 
