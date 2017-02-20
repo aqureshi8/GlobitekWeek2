@@ -61,7 +61,7 @@
 
   //My custom validation
   //num_only('1231')
-  //for id, code, position, etc
+  //for id, position, etc
   function num_only($value) {
     if(preg_match('/[^0-9]/', $value) === 1) {
       return false;
@@ -76,6 +76,39 @@
   //contains only alphabet chars plus dashes and apostrophes for country / state names
   function alpha_da_only($value) {
     if(preg_match('/[^A-Za-z\'\-]/', $value) === 1) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  //My custom validation
+  //unique_username('username')
+  function unique_username($value) {
+    if(user_exists($value) === true) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  //My custom validation
+  //unique_code('CD')
+  function unique_code($value) {
+    if(code_exists($value) === true) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  //My custom validation
+  //unique_position(['state_id' => 1, 'position' => 1])
+  function unique_position($value) {
+    if(position_exists($value['state_id'], $value['position']) === true) {
       return false;
     }
     else {

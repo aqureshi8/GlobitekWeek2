@@ -52,8 +52,15 @@
     else if(!has_length($state['name'], ['max' => 254])) {
       $errors[] = "Name must be less than 255 characters long.";
     }
+    else if(!alpha_da_only($state['name'])) {
+      $errors[] = "Name contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
+    }
     if(is_blank($state['code'])) { $errors[] = "Code cannot be blank."; }
+    else if(!alpha_da_only($state['code'])) {
+      $errors[] = "Code contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
+    }
     if(is_blank($state['country_id'])) { $errors[] = "Country ID cannot be blank."; }
+    else if(!num_only($state['country_id'])) { $errors[] = "Country ID may only contain numerical characters (0-9)."; }
 
     return $errors;
   }
@@ -164,8 +171,17 @@
     else if(!has_length($territory['name'], ['max' => 254])) {
       $errors[] = "Name must be less than 255 characters long.";
     }
+    else if(!alpha_da_only($territory['name'])) {
+      $errors[] = "Name contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
+    }
     if(is_blank($territory['position'])) {
       $errors[] = "Position cannot be blank.";
+    }
+    else if(!num_only($territory['position'])) {
+      $errors[] = "Position may only contain numerical characters (0-9).";
+    }
+    else if(!unique_position(['state_id' => $territory['state_id'], 'position' => $territory['position']])) {
+      $errors[] = "Position is already taken.";
     }
     return $errors;
   }
@@ -284,11 +300,17 @@
     else if(!has_length($salesperson['first_name'], ["max" => 254])) {
       $errors[] = "First name must be less than 255 characters long.";
     }
+    else if(!alpha_da_only($salesperson['first_name'])) {
+      $errors[] = "First name contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
+    }
     if(is_blank($salesperson['last_name'])) {
       $errors[] = "Last name cannot be blank.";
     }
     else if(!has_length($salesperson['last_name'], ["max" => 254])) {
       $errors[] = "Last name must be less than 255 characters long.";
+    }
+    else if(!alpha_da_only($salesperson['last_name'])) {
+      $errors[] = "Last name contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
     }
     if(is_blank($salesperson['phone'])) {
       $errors[] = "Phone cannot be blank.";
@@ -419,12 +441,16 @@
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($user['first_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "First name must be between 2 and 255 characters.";
+    } else if(!alpha_da_only($user['first_name'])) {
+      $errors[] = "First name contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
     }
 
     if (is_blank($user['last_name'])) {
       $errors[] = "Last name cannot be blank.";
     } elseif (!has_length($user['last_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "Last name must be between 2 and 255 characters.";
+    } else if(!alpha_da_only($user['last_name'])) {
+      $errors[] = "Last name contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
     }
 
     if (is_blank($user['email'])) {
@@ -441,6 +467,8 @@
       $errors[] = "Username must be less than 255 characters.";
     } else if (!has_valid_username_characters($user['username'])) {
       $errors[] = "Username contains invalid characters. Valid characters include A-Z, a-z, 0-9, and _.";
+    } else if (!unique_username($user['username'])) {
+      $errors[] = "Username is already taken.";
     }
     return $errors;
   }
@@ -520,4 +548,79 @@
     }
   }
 
+  // Check if a username exists
+  // Either returns true or false
+  function user_exists($username) {
+    global $db;
+
+    $username = db_escape($db, $username);
+
+    $sql = "SELECT * FROM users WHERE username='" . $username . "';";
+
+    $result = db_query($db, $sql);
+    if($result) {
+      if(mysqli_num_rows($result)>0) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+
+  // Check if a code is already taken
+  // Either returns true or false;
+  function code_exists($code) {
+    global $db;
+
+    $code = db_escape($db, $code);
+
+    $sql = "SELECT * FROM states WHERE code='" . $code . "';";
+
+    $result = db_query($db, $sql) ;
+    if($result) {
+      if(mysqli_num_rows($result)>0) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+
+  // Check if a territory is already claiming a certain position
+  // Either returns true or false;
+  function position_exists($state_id, $position) {
+    global $db;
+
+    $state_id = db_escape($db, $state_id);
+    $position = db_escape($db, $position);
+
+    $sql = "SELECT * FROM territories WHERE state_id=" . $state_id . " AND position=" . $position . ";";
+
+    $result = db_query($db, $sql);
+    if($result) {
+      if(mysqli_num_rows($result)>0) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
 ?>
