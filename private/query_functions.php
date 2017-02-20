@@ -299,7 +299,7 @@
     if(is_blank($salesperson['email'])) {
       $errors[] = "Email cannot be blank.";
     }
-    else if(!has_valid_email_format($salesperson['emai'])) {
+    else if(!has_valid_email_format($salesperson['email'])) {
       $errors[] = "Email must be a valid format (your_email@email.com).";
     }
     else if(!has_valid_email_characters($salesperson['email'])) {
