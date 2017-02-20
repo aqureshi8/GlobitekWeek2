@@ -26,4 +26,37 @@
     return strpos($value, '@') !== false;
   }
 
+  //has_valid_username_characters('username')
+  //can only contain A-Z, a-z, 0-9, and _
+  function has_valid_username_characters($value) {
+    if(preg_match('/[^A-Za-z0-9_]/', $value) === 1) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  //has_valid_phone('(111)-111-1111')
+  //can only contain 0-9, -, and ()
+  function has_valid_phone_characters($value) {
+    if(preg_match('/[^0-9\(\)\-]/', $value) === 1) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  //has_valid_email_characters('email@gmail.com')
+  //can only contain A-Z, a-z, 0-9, and @._-
+  function has_valid_email_characters($value) {
+    if(preg_match('/[^A-Za-z0-9@\._\-]/', $value) === 1) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
 ?>

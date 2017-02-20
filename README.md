@@ -10,46 +10,46 @@ The following **required** functionality is completed:
 
 2\. [x]  Required: Set Up the Starting Code
 
-3\. [ ]  Required: Review code for Staff CMS for Users
+3\. [x]  Required: Review code for Staff CMS for Users
 
-4\. [ ]  Required: Complete Staff CMS for Salespeople
-  * [ ]  Required: index.php
-  * [ ]  Required: show.php
-  * [ ]  Required: new.php
-  * [ ]  Required: edit.php
+4\. [x]  Required: Complete Staff CMS for Salespeople
+  * [x]  Required: index.php
+  * [x]  Required: show.php
+  * [x]  Required: new.php
+  * [x]  Required: edit.php
 
-5\. [ ]  Required: Complete Staff CMS for States
-  * [ ]  Required: index.php
-  * [ ]  Required: show.php
-  * [ ]  Required: new.php
-  * [ ]  Required: edit.php
+5\. [x]  Required: Complete Staff CMS for States
+  * [x]  Required: index.php
+  * [x]  Required: show.php
+  * [x]  Required: new.php
+  * [x]  Required: edit.php
 
-6\. [ ]  Required: Complete Staff CMS for Territories
-  * [ ]  Required: index.php
-  * [ ]  Required: show.php
-  * [ ]  Required: new.php
-  * [ ]  Required: edit.php
+6\. [x]  Required: Complete Staff CMS for Territories
+  * [x]  Required: index.php
+  * [x]  Required: show.php
+  * [x]  Required: new.php
+  * [x]  Required: edit.php
 
-7\. [ ]  Required: Add Data Validations
-  * [ ]  Required: Validate that no values are left blank.
-  * [ ]  Required: Validate that all string values are less than 255 characters.
-  * [ ]  Required: Validate that usernames contain only the whitelisted characters.
-  * [ ]  Required: Validate that phone numbers contain only the whitelisted characters.
-  * [ ]  Required: Validate that email addresses contain only whitelisted characters.
+7\. [x]  Required: Add Data Validations
+  * [x]  Required: Validate that no values are left blank.
+  * [x]  Required: Validate that all string values are less than 255 characters.
+  * [x]  Required: Validate that usernames contain only the whitelisted characters.
+  * [x]  Required: Validate that phone numbers contain only the whitelisted characters.
+  * [x]  Required: Validate that email addresses contain only whitelisted characters.
   * [ ]  Required: Add *at least 5* other validations of your choosing.
 
-8\. [ ]  Required: Sanitization
-  * [ ]  Required: All input and dynamic output should be sanitized.
-  * [ ]  Required: Sanitize dynamic data for URLs
-  * [ ]  Required: Sanitize dynamic data for HTML
-  * [ ]  Required: Sanitize dynamic data for SQL
+8\. [x]  Required: Sanitization
+  * [x]  Required: All input and dynamic output should be sanitized.
+  * [x]  Required: Sanitize dynamic data for URLs
+  * [x]  Required: Sanitize dynamic data for HTML
+  * [x]  Required: Sanitize dynamic data for SQL
 
-9\. [ ]  Required: Penetration Testing
-  * [ ]  Required: Verify form inputs are not vulnerable to SQLI attacks.
-  * [ ]  Required: Verify query strings are not vulnerable to SQLI attacks.
-  * [ ]  Required: Verify form inputs are not vulnerable to XSS attacks.
-  * [ ]  Required: Verify query strings are not vulnerable to XSS attacks.
-  * [ ]  Required: Listed other bugs or security vulnerabilities
+9\. [x]  Required: Penetration Testing
+  * [x]  Required: Verify form inputs are not vulnerable to SQLI attacks.
+  * [x]  Required: Verify query strings are not vulnerable to SQLI attacks.
+  * [x]  Required: Verify form inputs are not vulnerable to XSS attacks.
+  * [x]  Required: Verify query strings are not vulnerable to XSS attacks.
+  * [x]  Required: Listed other bugs or security vulnerabilities
 
 
 The following advanced user stories are optional:

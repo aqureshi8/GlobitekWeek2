@@ -10,34 +10,34 @@ $salespeople_result = find_salesperson_by_id($id);
 $salesperson = db_fetch_assoc($salespeople_result);
 ?>
 
-<?php $page_title = 'Staff: Salesperson ' . $salesperson['first_name'] . " " . $salesperson['last_name']; ?>
+<?php $page_title = 'Staff: Salesperson ' . htmlspecialchars($salesperson['first_name']) . " " . htmlspecialchars($salesperson['last_name']); ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="#add_a_url">Back to Salespeople List</a><br />
+  <a href="index.php">Back to Salespeople List</a><br />
 
-  <h1>Salesperson: <?php echo $salesperson['first_name'] . " " . $salesperson['last_name']; ?></h1>
+  <h1>Salesperson: <?php echo htmlspecialchars($salesperson['first_name']) . " " . htmlspecialchars($salesperson['last_name']); ?></h1>
 
   <?php
     echo "<table id=\"salesperson\">";
     echo "<tr>";
     echo "<td>Name: </td>";
-    echo "<td>" . $salesperson['first_name'] . " " . $salesperson['last_name'] . "</td>";
+    echo "<td>" . htmlspecialchars($salesperson['first_name']) . " " . htmlspecialchars($salesperson['last_name']) . "</td>";
     echo "</tr>";
     echo "<tr>";
     echo "<td>Phone: </td>";
-    echo "<td>" . $salesperson['phone'] . "</td>";
+    echo "<td>" . htmlspecialchars($salesperson['phone']) . "</td>";
     echo "</tr>";
     echo "<tr>";
     echo "<td>Email: </td>";
-    echo "<td>" . $salesperson['email'] . "</td>";
+    echo "<td>" . htmlspecialchars($salesperson['email']) . "</td>";
     echo "</tr>";
     echo "</table>";
 
     db_free_result($salespeople_result);
   ?>
   <br />
-  <a href="#add_a_url">Edit</a><br />
+  <a href="<?php echo htmlspecialchars(rawurlencode("edit.php") . "?id=" . urlencode($salesperson['id'])); ?>">Edit</a><br />
 </div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

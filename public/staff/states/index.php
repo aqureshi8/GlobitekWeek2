@@ -8,7 +8,7 @@
 
   <h1>States</h1>
 
-  <a href="#add_a_url">Add a State</a><br />
+  <a href="new.php">Add a State</a><br />
   <br />
 
   <?php
@@ -23,13 +23,13 @@
     echo "</tr>";
     while($state = db_fetch_assoc($state_result)) {
       echo "<tr>";
-      echo "<td>" . $state['name'] . "</td>";
-      echo "<td>" . $state['code'] . "</td>";
+      echo "<td>" . htmlspecialchars($state['name']) . "</td>";
+      echo "<td>" . htmlspecialchars($state['code']) . "</td>";
       echo "<td>";
-      echo "<a href=\"#add_a_url\">Show</a>";
+      echo "<a href=\"" . htmlspecialchars(rawurlencode("show.php") . "?id=" . urlencode($state['id'])) . "\">Show</a>";
       echo "</td>";
       echo "<td>";
-      echo "<a href=\"#add_a_url\">Edit</a>";
+      echo "<a href=\"" . htmlspecialchars(rawurlencode("edit.php") . "?id=" . urlencode($state['id'])) . "\">Edit</a>";
       echo "</td>";
       echo "</tr>";
     } // end while $states

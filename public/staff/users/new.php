@@ -21,7 +21,7 @@ if(is_post_request()) {
   $result = insert_user($user);
   if($result === true) {
     $new_id = db_insert_id($db);
-    redirect_to('show.php?id=' . $new_id);
+    redirect_to(rawurlencode('show.php') . '?id=' . urlencode($new_id));
   } else {
     $errors = $result;
   }
@@ -39,13 +39,13 @@ if(is_post_request()) {
 
   <form action="new.php" method="post">
     First name:<br />
-    <input type="text" name="first_name" value="<?php echo $user['first_name']; ?>" /><br />
+    <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" /><br />
     Last name:<br />
-    <input type="text" name="last_name" value="<?php echo $user['last_name']; ?>" /><br />
+    <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" /><br />
     Username:<br />
-    <input type="text" name="username" value="<?php echo $user['username']; ?>" /><br />
+    <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" /><br />
     Email:<br />
-    <input type="text" name="email" value="<?php echo $user['email']; ?>" /><br />
+    <input type="text" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Create"  />
   </form>
