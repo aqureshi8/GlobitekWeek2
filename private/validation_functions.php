@@ -59,4 +59,27 @@
     }
   }
 
+  //My custom validation
+  //num_only('1231')
+  //for id, code, position, etc
+  function num_only($value) {
+    if(preg_match('/[^0-9]/', $value) === 1) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  //My custom validation
+  //alpha_da_only('abc')
+  //contains only alphabet chars plus dashes and apostrophes for country / state names
+  function alpha_da_only($value) {
+    if(preg_match('/[^A-Za-z\'\-]/', $value) === 1) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 ?>

@@ -1,6 +1,6 @@
 # Project 2 - Input/Output Sanitization
 
-Time spent: **X** hours spent in total
+Time spent: **15** hours spent in total
 
 ## User Stories
 
@@ -36,7 +36,7 @@ The following **required** functionality is completed:
   * [x]  Required: Validate that usernames contain only the whitelisted characters.
   * [x]  Required: Validate that phone numbers contain only the whitelisted characters.
   * [x]  Required: Validate that email addresses contain only whitelisted characters.
-  * [ ]  Required: Add *at least 5* other validations of your choosing.
+  * [x]  Required: Add *at least 5* other validations of your choosing.
 
 8\. [x]  Required: Sanitization
   * [x]  Required: All input and dynamic output should be sanitized.
