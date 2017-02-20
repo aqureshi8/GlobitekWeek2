@@ -86,7 +86,7 @@
   //My custom validation
   //unique_username('username')
   function unique_username($value) {
-    if(user_exists($value) === true) {
+    if(user_exists($value['id'], $value['username']) === true) {
       return false;
     }
     else {
@@ -97,7 +97,7 @@
   //My custom validation
   //unique_code('CD')
   function unique_code($value) {
-    if(code_exists($value) === true) {
+    if(code_exists($value['id'], $value['code']) === true) {
       return false;
     }
     else {
@@ -108,7 +108,7 @@
   //My custom validation
   //unique_position(['state_id' => 1, 'position' => 1])
   function unique_position($value) {
-    if(position_exists($value['state_id'], $value['position']) === true) {
+    if(position_exists($value['id'], $value['state_id'], $value['position']) === true) {
       return false;
     }
     else {

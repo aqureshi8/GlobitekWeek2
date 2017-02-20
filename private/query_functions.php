@@ -59,6 +59,9 @@
     else if(!alpha_da_only($state['code'])) {
       $errors[] = "Code contains invalid characters. Valid characters include A-Z, a-z, ', and -.";
     }
+    else if(!unique_code(['id' => $state['id'], 'code' => $state['code']])) {
+      $errors[] = "Code is already taken.";
+    }
     if(is_blank($state['country_id'])) { $errors[] = "Country ID cannot be blank."; }
     else if(!num_only($state['country_id'])) { $errors[] = "Country ID may only contain numerical characters (0-9)."; }
 
@@ -180,7 +183,7 @@
     else if(!num_only($territory['position'])) {
       $errors[] = "Position may only contain numerical characters (0-9).";
     }
-    else if(!unique_position(['state_id' => $territory['state_id'], 'position' => $territory['position']])) {
+    else if(!unique_position(['id' => $territory['id'], 'state_id' => $territory['state_id'], 'position' => $territory['position']])) {
       $errors[] = "Position is already taken.";
     }
     return $errors;
@@ -467,7 +470,7 @@
       $errors[] = "Username must be less than 255 characters.";
     } else if (!has_valid_username_characters($user['username'])) {
       $errors[] = "Username contains invalid characters. Valid characters include A-Z, a-z, 0-9, and _.";
-    } else if (!unique_username($user['username'])) {
+    } else if (!unique_username(['id' => $user['id'], 'username' => $user['username']])) {
       $errors[] = "Username is already taken.";
     }
     return $errors;
@@ -550,12 +553,12 @@
 
   // Check if a username exists
   // Either returns true or false
-  function user_exists($username) {
+  function user_exists($id, $username) {
     global $db;
 
     $username = db_escape($db, $username);
 
-    $sql = "SELECT * FROM users WHERE username='" . $username . "';";
+    $sql = "SELECT * FROM users WHERE username='" . $username . "' AND id!=" . $id . ";";
 
     $result = db_query($db, $sql);
     if($result) {
@@ -575,12 +578,12 @@
 
   // Check if a code is already taken
   // Either returns true or false;
-  function code_exists($code) {
+  function code_exists($id, $code) {
     global $db;
 
     $code = db_escape($db, $code);
 
-    $sql = "SELECT * FROM states WHERE code='" . $code . "';";
+    $sql = "SELECT * FROM states WHERE code='" . $code . "' AND id!=" . $id . ";";
 
     $result = db_query($db, $sql) ;
     if($result) {
@@ -600,13 +603,13 @@
 
   // Check if a territory is already claiming a certain position
   // Either returns true or false;
-  function position_exists($state_id, $position) {
+  function position_exists($id, $state_id, $position) {
     global $db;
 
     $state_id = db_escape($db, $state_id);
     $position = db_escape($db, $position);
 
-    $sql = "SELECT * FROM territories WHERE state_id=" . $state_id . " AND position=" . $position . ";";
+    $sql = "SELECT * FROM territories WHERE state_id=" . $state_id . " AND position=" . $position . " AND id!=" . $id .";";
 
     $result = db_query($db, $sql);
     if($result) {
